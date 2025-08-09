@@ -77,9 +77,21 @@ model VerificationToken {
 }
 
 model Lesson {
-  id           String   @id @default(cuid())
-  title        String
-  youtubeId    String
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id        String   @id @default(cuid())
+  title     String
+  youtubeId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  transcripts Transcript[]
+}
+
+model Transcript {
+  id      String @id @default(cuid())
+  content String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Lesson    Lesson   @relation(fields: [lessonId], references: [id])
+  lessonId  String
 }
