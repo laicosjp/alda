@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { getVideoInfo } from "../src/server/services/youtube";
 
 const prisma = new PrismaClient();
 
@@ -14,12 +15,28 @@ async function main() {
   ];
 
   for (const youtubeId of youtubeIds) {
-    await prisma.lesson.create({
-      data: {
-        title: `Lesson ${youtubeId}`,
-        youtubeId: youtubeId,
-      },
-    });
+    try {
+      const videoInfo = await getVideoInfo(youtubeId);
+      const title = videoInfo ? videoInfo.title : `Lesson ${youtubeId}`;
+      
+      await prisma.lesson.create({
+        data: {
+          title: title,
+          youtubeId: youtubeId,
+        },
+      });
+      
+      console.log(`Created lesson: ${title}`);
+    } catch (error) {
+      console.error(`Error fetching video ${youtubeId}:`, error);
+      // Fallback to generic title if API fails
+      await prisma.lesson.create({
+        data: {
+          title: `Lesson ${youtubeId}`,
+          youtubeId: youtubeId,
+        },
+      });
+    }
   }
 
   console.log(`Created ${youtubeIds.length} lessons`);
