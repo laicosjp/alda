@@ -87,3 +87,4 @@ pnpm test [test-file-path]
 - Biome is configured for code formatting and linting with Tailwind class sorting
 - Database migrations should be generated with `pnpm db:generate` before deploying
 - The project uses server components by default; use `"use client"` directive for client components
+- Always response in Japanese

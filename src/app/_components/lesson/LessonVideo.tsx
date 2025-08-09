@@ -24,11 +24,35 @@ const LessonVideo = ({ lessonId }: { lessonId: string }) => {
 							)}
 						</div>
 						<div className="bg-base-100 p-6 flex flex-col gap-4 rounded">
-							<p className="mx-auto">This is a local train bound for Motomachi-chukagai.</p>
-              <p className="mx-auto">この電車は元町中華街行きの普通電車です</p>
+							<p className="mx-auto">
+								This is a local train bound for Motomachi-chukagai.
+							</p>
+							<p className="mx-auto">この電車は元町中華街行きの普通電車です</p>
 						</div>
 					</div>
-					<div className="w-3/7 h-full">hello</div>
+					<div className="w-3/7 bg-base-100 rounded overflow-y-scroll">
+						<div className="border-b border-neutral-content p-3">字幕</div>
+						<div className="flex flex-col divide-y divide-base-300">
+							<div className="p-4">
+								<p className="">
+									this is a local train bound for motomachi-chukagai
+								</p>
+								<p className="">この電車は元町中華街行きの普通電車です</p>
+							</div>
+							<div className="p-4">
+								<p className="">
+									this is a local train bound for motomachi-chukagai
+								</p>
+								<p className="">この電車は元町中華街行きの普通電車です</p>
+							</div>
+							<div className="p-4">
+								<p className="">
+									this is a local train bound for motomachi-chukagai
+								</p>
+								<p className="">この電車は元町中華街行きの普通電車です</p>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
