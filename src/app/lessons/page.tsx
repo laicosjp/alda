@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { api } from "~/trpc/react";
 
 export default function LessonsPage() {
@@ -22,9 +23,10 @@ export default function LessonsPage() {
       ) : (
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {lessons.map((lesson) => (
-            <div
+            <Link
               key={lesson.id}
-              className="border rounded-lg p-4 hover:bg-gray-50"
+              href={`/lessons/${lesson.id}`}
+              className="border rounded-lg p-4 hover:bg-gray-50 transition-colors block"
             >
               <h2 className="text-lg font-semibold mb-2">{lesson.title}</h2>
               
@@ -43,7 +45,7 @@ export default function LessonsPage() {
               <p className="text-sm text-gray-500">
                 作成日: {new Date(lesson.createdAt).toLocaleDateString('ja-JP')}
               </p>
-            </div>
+            </Link>
           ))}
         </div>
       )}
